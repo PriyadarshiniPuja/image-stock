@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.card-container{
+  padding: 25px;
+}
+.form-group{
+  margin: 20px 0;
+}
