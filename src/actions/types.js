@@ -3,6 +3,7 @@ export const REGISTER_FAIL = "REGISTER_FAIL";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
+export const LOADING = "LOADING";
 
 export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
@@ -10,3 +11,6 @@ export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 export const GET_POSTS = "GET_POSTS";
 export const CREATE_POST = "CREATE_POST";
 export const GET_POST_DETAIL = "GET_POST_DETAIL";
+export const GET_USER_DETAIL = "GET_USER_DETAIL";
+export const SEND_COMMENT = "SEND_COMMENT";
+export const DELETE_COMMENT = "DELETE_COMMENT";

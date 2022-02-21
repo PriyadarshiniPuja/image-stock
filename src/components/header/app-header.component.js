@@ -1,8 +1,10 @@
 import { Grid, Button, Menu, MenuItem } from "@material-ui/core";
 import React, { useState } from "react";
-import history from "../services/history";
+import { useNavigate } from "react-router-dom";
+import "./app-header.scss";
 function AppHeader(props) {
   const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -12,23 +14,18 @@ function AppHeader(props) {
   };
   const handleLogout = () => {
     localStorage.removeItem("user");
-    history.push("login");
-    window.location.reload();
+    navigate("/login");
   };
   return (
-    <Grid
-      container
-      style={{
-        backgroundColor: "blue",
-        height: 60 + "px",
-        display: "flex",
-        padding: "0 30px",
-        justifyContent: "space-between",
-        alignItems: "center",
-        color: "white",
-      }}
-    >
-      <h3 style={{ paddingLeft: 20 + "px" }}>Posts</h3>
+    <Grid container className="app-header">
+      <h3
+        className="header-link"
+        onClick={() => {
+          navigate("/posts");
+        }}
+      >
+        Posts
+      </h3>
       <div
         style={{
           display: "flex",
@@ -38,9 +35,7 @@ function AppHeader(props) {
           style={{ paddingRight: 20 + "px" }}
           color="inherit"
           onClick={() => {
-            console.log("on create");
-            history.push("create-post");
-            window.location.reload();
+            navigate("/create-post");
           }}
         >
           Create
@@ -53,9 +48,7 @@ function AppHeader(props) {
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
         >
-          <h3>
-            {props.user.firstName} {props.user.lastName}
-          </h3>
+          {props.user.firstName} {props.user.lastName}
         </Button>
 
         <Menu
@@ -67,8 +60,14 @@ function AppHeader(props) {
             "aria-labelledby": "basic-button",
           }}
         >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
-          <MenuItem onClick={handleClose}>My account</MenuItem>
+          <MenuItem
+            onClick={() => {
+              navigate("/profile");
+            }}
+          >
+            Profile
+          </MenuItem>
+
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>
       </div>

@@ -1,24 +1,44 @@
-import "./App.css";
-import Login from "./components/login.component";
-import Register from "./components/register.component";
-import CreatePost from "./components/create-post.component";
+import "./App.scss";
+import Login from "./components/auth/login.component";
+import Register from "./components/auth/register.component";
+import CreatePost from "./components/post/create-post.component";
 import { useRoutes, Routes, Route } from "react-router-dom";
-import Posts from "./components/posts.component";
-import PostDetail from "./components/post-detail.component";
-import AppHeader from "./components/app-header.component";
+import Posts from "./components/post/posts.component";
+import PostDetail from "./components/post/post-detail.component";
+import AppHeader from "./components/header/app-header.component";
+import Profile from "./components/auth/profile.component";
+import PrivateRoutes from "./components/auth/private-routes.component";
 
 function App() {
   const user = JSON.parse(localStorage.getItem("user"));
+  console.log(`user`, user);
   let routes = (
     <>
-      <AppHeader user={user} />
+      {user != undefined || user != null ? <AppHeader user={user} /> : ""}
       <Routes>
         <Route path="/" exact element={<Login />} />
         <Route path="/login" exact element={<Login />} />
         <Route path="/register" exact element={<Register />} />
-        <Route path="/posts" exact element={<Posts />} />
-        <Route path="/post/:id" exact element={<PostDetail />} />
-        <Route path="/create-post" exact element={<CreatePost />} />
+        <Route
+          path="/profile"
+          exact
+          element={<PrivateRoutes component={Profile} />}
+        />
+        <Route
+          path="/posts"
+          exact
+          element={<PrivateRoutes component={Posts} />}
+        />
+        <Route
+          path="/post/:id"
+          exact
+          element={<PrivateRoutes component={PostDetail} />}
+        />
+        <Route
+          path="/create-post"
+          exact
+          element={<PrivateRoutes component={CreatePost} />}
+        />
       </Routes>
     </>
   );

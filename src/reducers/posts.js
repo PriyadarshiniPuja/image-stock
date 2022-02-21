@@ -1,4 +1,12 @@
-import { CREATE_POST, GET_POSTS, GET_POST_DETAIL } from "../actions/types";
+import {
+  CREATE_POST,
+  GET_POSTS,
+  GET_POST_DETAIL,
+  GET_USER_DETAIL,
+  LOADING,
+  SEND_COMMENT,
+  DELETE_COMMENT,
+} from "../actions/types";
 
 const initialState = {
   posts: [],
@@ -7,9 +15,12 @@ const initialState = {
 
 export function posts(state = initialState, action) {
   const { type, payload } = action;
-
-  console.log("payload", payload);
   switch (type) {
+    case LOADING:
+      return {
+        ...state,
+        loading: payload,
+      };
     case CREATE_POST:
       return { post: payload };
 
@@ -21,7 +32,12 @@ export function posts(state = initialState, action) {
 
     case GET_POST_DETAIL:
       return { ...state, postData: payload.postData };
-
+    case GET_USER_DETAIL:
+      return { ...state, userDetail: payload.userDetail };
+    case SEND_COMMENT:
+      return { ...state };
+    case DELETE_COMMENT:
+      return { ...state };
     default:
       return state;
   }

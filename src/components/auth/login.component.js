@@ -8,9 +8,9 @@ import {
   FormControl,
   InputLabel,
 } from "@material-ui/core";
-import history from "../services/history";
-import AuthService from "../services/auth-service";
-// import { Redirect } from "react-router-dom";
+import history from "../../services/history";
+import AuthService from "../../services/auth-service";
+import { Link } from "react-router-dom";
 
 const required = (value) => {
   if (!value) {
@@ -164,6 +164,9 @@ class Login extends Component {
                 }}
               />
             </form>
+            <Grid container>
+              New User? <Link to="/register"> Register</Link>
+            </Grid>
           </Card>
         </Grid>
       </div>
