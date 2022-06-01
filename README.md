@@ -1,2 +1,2 @@
 # image-stock
-image-stock
+image-stock project
